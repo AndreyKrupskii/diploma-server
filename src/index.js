@@ -7,6 +7,11 @@ const app = express();
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: '250mb' }));
 
+app.get('/', (req, res) => {
+  console.log(req.query);
+  res.send('Origin: Hello World!');
+});
+
 app.post('/data', (req, res) => {
   console.log(req.body);
   res.send('Hello World!');
