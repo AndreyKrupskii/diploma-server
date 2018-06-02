@@ -22,7 +22,15 @@ class SensorsModel extends Model {
   */
   constructor() {
     super();
+
+    // handle singleton
+    if (SensorsModel.singleton) {
+      return SensorsModel.singleton;
+    }
+
+    // init model
     this.source = initSequelizeModel();
+    SensorsModel.singleton = this;
   }
 
   /**
@@ -65,9 +73,8 @@ class SensorsModel extends Model {
       options.timestamp = options.timestamp || {};
       options.timestamp[Sequelize.Op.lt] = queries.dateTo;
     }
-    if (queries.sensorId) {
-      options.timestamp = options.sensorId || {};
-      options.sensorId[Sequelize.Op.or] = [queries.sensorId];
+    if (typeof queries.sensorId !== 'undefined') {
+      options.sensorId = queries.sensorId;
     }
 
     // request data
@@ -75,6 +82,9 @@ class SensorsModel extends Model {
       const response = await this.source.findAll({
         where: { ...options },
         raw: true,
+        offset: queries.offset,
+        limit: queries.limit,
+        order: [['id', 'DESC']],
       });
       return this.resolve(response || []);
     } catch (e) {
@@ -118,3 +128,4 @@ function initSequelizeModel() {
 }
 
 module.exports = SensorsModel;
+module.exports.SENSORS = SENSORS;

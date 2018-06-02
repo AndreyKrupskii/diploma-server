@@ -5,5 +5,6 @@ module.exports = {
     "class-methods-use-this": 0,
     "no-new": 0,
     "no-param-reassign": 0,
+    "no-await-in-loop": 0,
   }
 };

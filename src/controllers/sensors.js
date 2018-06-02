@@ -1,5 +1,6 @@
 const Controller = require('./../core/controller');
 const SensorsModel = require('./../models/sensors');
+const SocketService = require('./../services/socket');
 const log = require('./../libs/log');
 
 /**
@@ -54,9 +55,13 @@ class SensorsController extends Controller {
     // add data to database
     const response = await this.model.addData(data);
     if (response.error) {
-      return this.reject(res, response.error, response.meta);
+      this.reject(res, response.error, response.meta);
     }
-    return this.resolve(res, response.data, response.meta);
+    this.resolve(res, response.data, response.meta);
+
+    // broadcast actual data
+    const socket = new SocketService();
+    return socket.broadcastSensorsData();
   }
 }
 
