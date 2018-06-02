@@ -8,13 +8,24 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "serve": "forever ./src/index.js"
   },
   "author": "Andrey Krupskii, <andreykrupskii@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "forever": "^0.15.3",
+    "pg": "^7.4.3",
+    "sequelize": "^4.37.10",
+    "socket.io": "^2.1.1",
+    "winston": "^2.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0"
   }
 }
