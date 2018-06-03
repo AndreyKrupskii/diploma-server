@@ -8,8 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js",
-    "serve": "forever ./src/index.js"
+    "start": "forever ./src/index.js"
   },
   "author": "Andrey Krupskii, <andreykrupskii@gmail.com>",
   "license": "ISC",
