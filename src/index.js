@@ -1,5 +1,6 @@
 const http = require('http');
 const express = require('express');
+const cors = require('cors');
 const io = require('socket.io');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -12,6 +13,7 @@ const db = require('./libs/db');
 
 // init app
 const app = express();
+app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: '250mb' }));
 
