@@ -4,11 +4,11 @@ const log = require('./log');
 
 // init database connection
 const db = new Sequelize({
-  host: config.db.host,
-  port: config.db.port,
-  database: config.db.database,
-  username: config.db.username,
-  password: config.db.password,
+  host: process.env.DB_HOST || config.db.host,
+  port: process.env.DB_PORT || config.db.port,
+  database: process.env.DB_NAME || config.db.database,
+  username: process.env.DB_USER_NAME || config.db.username,
+  password: process.env.DB_USER_PASSWORD || config.db.password,
   dialect: config.db.dialect,
   operatorsAliases: false,
   logging: false,
